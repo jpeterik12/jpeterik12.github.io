@@ -1,0 +1,709 @@
+
+/* ========================================================================= */
+/*                                                                           */
+/*                            CRAFTING GRID CSS                              */
+/*                                                                           */
+/* ========================================================================= */
+
+@font-face {
+  font-family: 'minecraftia';
+  src: url(./MinecraftiaRegular.ttf);
+  font-weight: normal;
+  font-style: normal
+}
+
+.invgrid {
+  border-collapse: collapse;
+  display: inline-block
+}
+
+.invslot {
+  border-width: 2px;
+  border-style: solid;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  position: relative
+}
+
+.pixel-image {
+  image-rendering: optimizeSpeed;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+.invslot-stacksize {
+  position: absolute;
+  right: -1px;
+  bottom: -14px;
+  font-family: minecraftia, san-serif;
+  font-weight: normal;
+  color: #FFF;
+  text-shadow: 2px 2px 0 #3F3F3F;
+  filter: dropshadow(color=#3F3F3F, offx=2, offy=2);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.crafting-custom .invslot {
+  background-color: #67AFD0;
+  border-color: #1A536E #C0DEEB #C0DEEB #1A536E
+}
+
+.crafting-standard .invslot {
+  background-color: #8B8B8B;
+  border-color: #373737 #FFFFFF #FFFFFF #373737
+}
+
+.crafting-zauber .invslot {
+  background-color: #8B8B8B;
+  border-color: #FFFFFF #373737 #373737 #FFFFFF
+}
+
+.invslot-large {
+  padding: 8px
+}
+
+.crafting {
+  padding: 12px;
+  display: inline-block;
+  border-width: 3px;
+  border-style: solid;
+  white-space: nowrap;
+  position: relative;
+}
+
+.crafting-shapeless::after {
+	content: url(https://wiki.gm4.co/images/d/d2/Shapeless.png);
+	position: absolute;
+	margin: .5em;
+	top: 0;
+	width: 19px;
+	height: 15px;
+	right: 0;
+}
+
+.crafting-container-name {
+  font-family: minecraftia, san-serif;
+}
+
+.crafting-container-name p {
+  margin: 0;
+}
+
+.crafting-zauber .crafting-container-name {
+  text-align: center;
+}
+
+.crafting-custom {
+  background-color: #8FC4DC;
+  border-color: #C0DEEB #1A536E #1A536E #C0DEEB
+}
+
+.crafting-standard {
+  background-color: #C6C6C6;
+  border-color: #DBDBDB #5B5B5B #5B5B5B #DBDBDB
+}
+
+.crafting-zauber {
+  background-color: #8FC4DC;
+  border-color: #C0DEEB #1A536E #1A536E #C0DEEB
+}
+
+.catalyst {
+  margin: 16px 0px 0px 3px
+}
+
+.crafting-custom .crafting-arrow {
+  width: 32px;
+  height: 32px;
+  background-image: url(https://wiki.gm4.co/images/b/b7/Custom_Crafting_arrow.png)
+}
+
+.crafting-standard .crafting-arrow {
+  width: 32px;
+  height: 32px;
+  background-image: url(https://wiki.gm4.co/images/b/b7/Standard_Crafting_arrow.png)
+}
+
+.crafting-zauber .crafting-arrow {
+  width: 33px;
+  height: 36px;
+  background-image: url(https://wiki.gm4.co/images/4/4e/Custom_Cauldron_Crafting_Arrow.png)
+}
+
+.crafting-recipe>* {
+  vertical-align: middle;
+  display: inline-block
+}
+
+.enchanted {
+  position: relative;
+}
+
+.enchanted::before {
+  mix-blend-mode: screen;
+  animation: enchantedAnimate 5s linear 2s infinite;
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  z-index: -1;
+  background-image: url(https://wiki.gm4.co/images/c/ca/Enchantment_Glint.png);
+  background-size: 100%;
+  transform: rotate(-20deg);
+}
+
+@keyframes enchantedAnimate {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: 128px -128px;
+  }
+}
+
+.inv-sprite {
+  background: url(https://wiki.gm4.co/images/4/44/InvSprite.png?version=74157ae0b6fb98009369c42d04723a8a);
+  mask-image: url(https://wiki.gm4.co/images/4/44/InvSprite.png?version=74157ae0b6fb98009369c42d04723a8a);
+  -webkit-mask-image: url(https://wiki.gm4.co/images/4/44/InvSprite.png?version=74157ae0b6fb98009369c42d04723a8a);
+}
+
+.gm4-sprite {
+  background: url(https://wiki.gm4.co/images/2/2d/Gm4Sprite.png);
+  mask-image: url(https://wiki.gm4.co/images/2/2d/Gm4Sprite.png);
+  -webkit-mask-image: url(https://wiki.gm4.co/images/2/2d/Gm4Sprite.png);
+}
+
+.effect-sprite {
+  background: url(https://wiki.gm4.co/images/b/b7/EffectsCSS.png);
+  mask-image: url(https://wiki.gm4.co/images/b/b7/EffectsCSS.png);
+  -webkit-mask-image: url(https://wiki.gm4.co/images/b/b7/EffectsCSS.png);
+}
+
+.trophy-sprite {
+  background: url(https://wiki.gm4.co/images/7/7f/TrophySprite.png);
+  mask-image: url(https://wiki.gm4.co/images/7/7f/TrophySprite.png) ;
+  -webkit-mask-image: url(https://wiki.gm4.co/images/7/7f/TrophySprite.png);
+}
+
+
+/* ========================================================================= */
+/*                                                                           */
+/*               Modified styling for minecraft style tooltip                */
+/*                                                                           */
+/* ========================================================================= */
+
+.tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #100010;
+  background-color: rgba(16, 0, 16, 0.94);
+  padding: 4px 4px 6px 4px;
+  font-family: minecraftia, sans-serif;
+  font-size: 16px;
+  color: #FFF;
+  text-shadow: 0.125em 0.125em 0 #3F3F3F;
+  white-space: nowrap;
+  word-spacing: -5px;
+  line-height: 1.25em;
+  margin: 0.125em 0.25em;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.tooltip::before {
+  content: "";
+  position: absolute;
+  top: 0.125em;
+  right: -0.125em;
+  bottom: 0.125em;
+  left: -0.125em;
+  border: 0.125em solid #100010;
+  border-style: none solid;
+  border-color: rgba(16, 0, 16, 0.94);
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 0.125em;
+  right: 0;
+  bottom: 0.125em;
+  left: 0;
+  border: 0.125em solid #2D0A63;
+  border-image: -webkit-linear-gradient(rgba(80, 0, 255, 0.31), rgba(40, 0, 127, 0.31)) 1;
+  border-image: linear-gradient(rgba(80, 0, 255, 0.31), rgba(40, 0, 127, 0.31)) 1;
+}
+
+.lore {
+  display: block;
+  margin-top: 0.25em;
+}
+
+.slot {
+  padding: 1px;
+  display: inline-block;
+  border-width: 3px;
+  border-style: solid
+}
+
+
+/* ========================================================================= */
+/*                                                                           */
+/*            Classes corresponding to displaying advancements               */
+/*                                                                           */
+/* ========================================================================= */
+
+.advancement-icon {
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+  width: 52px;
+  height: 52px;
+  padding: 10px;
+}
+
+.advancement-icon.plain-raw {
+  background: url(https://wiki.gm4.co/images/d/d9/Advancement-plain-raw.png)
+}
+
+.advancement-icon.oval-raw {
+  background: url(https://wiki.gm4.co/images/4/41/Advancement-oval-raw.png)
+}
+
+.advancement-icon.fancy-raw {
+  background: url(https://wiki.gm4.co/images/9/96/Advancement-fancy-raw.png)
+}
+
+.advancement-icon.plain-worn {
+  background: url(https://wiki.gm4.co/images/f/f2/Advancement-plain-worn.png)
+}
+
+.advancement-icon.oval-worn {
+  background: url(https://wiki.gm4.co/images/4/4c/Advancement-oval-worn.png)
+}
+
+.advancement-icon.fancy-worn {
+  background: url(https://wiki.gm4.co/images/5/5f/Advancement-fancy-worn.png)
+}
+
+.advancement {
+  position: relative;
+  line-height: 18px;
+  font-smooth: never;
+  padding-top: 10px;
+  padding-left: 2px;
+  display: block;
+  font-size: 16px;
+  word-spacing: -2.5px;
+  font-family: minecraftia;
+  width: min-content;
+}
+
+.advancement .advancement-icon {
+  top: 0px;
+  left: 4px;
+  position: absolute;
+  z-index: 2;
+}
+
+.advancement .advancement-title {
+  position: relative;
+  z-index: 1;
+  height: 27px;
+  padding-top: 5px;
+  padding-left: 60px;
+  padding-right: 6px;
+  white-space: nowrap;
+  background: #036A96;
+  color: #FCFCFC;
+  text-shadow: 2px 2px #3E3E3E;
+  box-shadow: 0 -2px #0489C1, -2px 0 #0489C1, 0 2px #012E40, 2px 0 #012E40, 2px 2px black, 2px -2px black, -2px 2px black, -2px -2px black, 0 4px black, 4px 0 black, 0 -4px black, -4px 0 black;
+}
+
+.advancement .advancement-description {
+  background: #212121;
+  color: #A8A8A8;
+  padding-top: 7px;
+  padding-left: 6px;
+  padding-bottom: 5px;
+  padding-right: 6px;
+  box-shadow: 0 -2px #555555, -2px 0 #555555, 0 2px #555555, 2px 0 #555555, 2px 2px black, 2px -2px black, -2px 2px black, -2px -2px black, 0 4px black, 4px 0 black, 0 -4px black, -4px 0 black;
+}
+
+.hover-advancement {
+  height: 52px;
+  width: 52px;
+  font-size: 16px;
+  overflow: visible;
+  font-smooth: never;
+  word-spacing: -2.3px;
+  line-height: 18px;
+  box-sizing: content-box;
+  font-family: minecraftia;
+}
+
+.hover-icon {
+  box-sizing: border-box;
+  width: 52px;
+  height: 52px;
+  padding: 10px;
+  z-index: 2;
+  position: absolute;
+}
+
+.hover-advancement-text {
+  width: max-content;
+}
+
+.hover-title {
+  position: relative;
+  z-index: 1;
+  top: 10px;
+  margin-left: -2px;
+  padding-top: 5px;
+  padding-left: 60px;
+  padding-right: 8px;
+  height: 32px;
+  width: auto;
+  box-sizing: border-box;
+  white-space: nowrap;
+  background: #036A96;
+  color: #FCFCFC;
+  text-shadow: 2px 2px #3E3E3E;
+  box-shadow: 0 -2px #0489C1, -2px 0 #0489C1, 0 2px #012E40, 2px 0 #012E40, 2px 2px black, 2px -2px black, -2px 2px black, -2px -2px black, 0 4px black, 4px 0 black, 0 -4px black, -4px 0 black;
+}
+
+.hover-description {
+  position: relative;
+  margin-top: 10px;
+  margin-left: -2px;
+  padding-top: 7px;
+  padding-left: 6px;
+  padding-bottom: 5px;
+  padding-right: 2px;
+  color: #ABABAB;
+  background: #212121;
+  width: auto;
+  box-shadow: 0 -2px #555555, -2px 0 #555555, 0 2px #555555, 2px 0 #555555, 2px 2px black, 2px -2px black, -2px 2px black, -2px -2px black, 0 4px black, 4px 0 black, 0 -4px black, -4px 0 black;
+}
+
+.hover-advancement .hover-advancement-text {
+  display: none;
+}
+
+.hover-advancement span:hover {
+  z-index: 13;
+}
+
+.hover-advancement span:hover~.hover-advancement-text {
+  display: inline-block;
+  z-index: 10;
+}
+
+.hover-advancement span:hover~.hover-advancement-text .hover-title {
+  z-index: 12;
+}
+
+.hover-advancement span:hover~.hover-advancement-text .hover-description {
+  z-index: 11;
+}
+
+.hover-icon.plain-raw {
+  background: url(https://wiki.gm4.co/images/d/d9/Advancement-plain-raw.png)
+}
+
+.hover-icon.oval-raw {
+  background: url(https://wiki.gm4.co/images/4/41/Advancement-oval-raw.png)
+}
+
+.hover-icon.fancy-raw {
+  background: url(https://wiki.gm4.co/images/9/96/Advancement-fancy-raw.png)
+}
+
+.hover-icon.plain-worn {
+  background: url(https://wiki.gm4.co/images/f/f2/Advancement-plain-worn.png)
+}
+
+.hover-icon.oval-worn {
+  background: url(https://wiki.gm4.co/images/4/4c/Advancement-oval-worn.png)
+}
+
+.hover-icon.fancy-worn {
+  background: url(https://wiki.gm4.co/images/5/5f/Advancement-fancy-worn.png)
+}
+
+
+/* ========================================================================= */
+/*                                                                           */
+/*            Classes corresponding to Minecraft formatting codes            */
+/*                                                                           */
+/* ========================================================================= */
+
+.minecraftia {
+  font-family: minecraftia, san-serif;
+}
+
+.chat-background {
+  background: rgba(10, 10, 10, .6);
+}
+
+.format-0 {
+  color: #000;
+  text-shadow: 0.125em 0.125em 0 #000;
+}
+
+.format-1 {
+  color: #00A;
+  text-shadow: 0.125em 0.125em 0 #00002A;
+}
+
+.format-2 {
+  color: #0A0;
+  text-shadow: 0.125em 0.125em 0 #002A00;
+}
+
+.format-3 {
+  color: #0AA;
+  text-shadow: 0.125em 0.125em 0 #002A2A;
+}
+
+.format-4 {
+  color: #A00;
+  text-shadow: 0.125em 0.125em 0 #2A0000;
+}
+
+.format-5 {
+  color: #A0A;
+  text-shadow: 0.125em 0.125em 0 #2A002A;
+}
+
+.format-6 {
+  color: #FA0;
+  text-shadow: 0.125em 0.125em 0 #2A2A00;
+}
+
+.format-7 {
+  color: #AAA;
+  text-shadow: 0.125em 0.125em 0 #2A2A2A;
+}
+
+.format-8 {
+  color: #555;
+  text-shadow: 0.125em 0.125em 0 #151515;
+}
+
+.format-9 {
+  color: #55F;
+  text-shadow: 0.125em 0.125em 0 #15153F;
+}
+
+.format-a {
+  color: #5F5;
+  text-shadow: 0.125em 0.125em 0 #153F15;
+}
+
+.format-b {
+  color: #5FF;
+  text-shadow: 0.125em 0.125em 0 #153F3F;
+}
+
+.format-c {
+  color: #F55;
+  text-shadow: 0.125em 0.125em 0 #3F1515;
+}
+
+.format-d {
+  color: #F5F;
+  text-shadow: 0.125em 0.125em 0 #3F153F;
+}
+
+.format-e {
+  color: #FF5;
+  text-shadow: 0.125em 0.125em 0 #3F3F15;
+}
+
+.format-f {
+  color: #FFF;
+  text-shadow: 0.125em 0.125em 0 #3F3F3F;
+}
+
+.format-l {
+  font-weight: bold;
+  letter-spacing: 0.125em;
+}
+
+.format-m {
+  text-decoration: line-through;
+}
+
+.format-n {
+  text-decoration: underline;
+}
+
+.format-o {
+  font-style: italic;
+  position: relative;
+  left: -3px;
+}
+
+
+/* ========================================================================= */
+/*                                                                           */
+/*          Classes corresponding to Minecraft Written Book display          */
+/*                                                                           */
+/* ========================================================================= */
+
+.book {
+  background-image: url(https://wiki.gm4.co/images/e/e2/Book_page.png);
+  background-size: 18.25em 22.5em;
+  line-height: 1.125em;
+  position: relative;
+  font-family: minecraftia;
+  width: 18.25em;
+  height: 22.5em;
+  font-size: 16px;
+  padding-top: 1.6875em;
+  padding-left: 2em;
+  padding-right: 2.125em;
+  padding-bottom: 0.125em;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.book_pagetext {
+  overflow-wrap: break-word;
+  white-space: break-spaces;
+  display: none;
+  width: 14.25em;
+  height: 15.75em;
+  word-spacing: -0.1563em;
+}
+
+.book_pagetext.pageactive {
+  overflow: hidden;
+  display: block;
+  width: 14.25em;
+  height: 15.75em;
+}
+
+.book_pagenum {
+  text-align: right;
+  margin-bottom: 0.625em;
+  margin-right: 0.125em;
+  word-spacing: -0.1563em;
+}
+
+.book_pagenum p {
+  text-align: left;
+  margin-bottom: 0em;
+}
+
+.book_leftarrow {
+  background-image: url(https://wiki.gm4.co/images/d/d1/Book_arrow_left.png);
+  background-size: cover;
+  display: inline-block;
+  position: absolute;
+  bottom: 1.5em;
+  left: 3.25em;
+  width: 2.25em;
+  height: 1.25em;
+  cursor: pointer;
+}
+
+.book_leftarrow:hover {
+  background-image: url(https://wiki.gm4.co/images/6/64/Book_arrow_left_selected.png);
+}
+
+.book_rightarrow {
+  background-image: url(https://wiki.gm4.co/images/7/73/Book_arrow_right.png);
+  background-size: cover;
+  display: inline-block;
+  position: absolute;
+  bottom: 1.5em;
+  right: 3.625em;
+  width: 2.25em;
+  height: 1.25em;
+  cursor: pointer;
+}
+
+.book_rightarrow:hover {
+  background-image: url(https://wiki.gm4.co/images/4/4e/Book_arrow_right_selected.png);
+}
+
+
+
+/* ========================================================================= */
+/*                                                                           */
+/*         Classes corresponding to Minecraft Villager Trade display         */
+/*                                                                           */
+/* ========================================================================= */
+
+.trade{
+  background-image: url(https://wiki.gm4.co/images/5/51/Trade_background.png);
+  height: 40px;
+  width: 176px;
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 2px;
+  padding-left: 10px;
+  padding-right: 8px;
+  padding-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+.trade :nth-child(2):not(:last-child){
+  position: relative;
+  right: 3px;
+}
+
+.tradetable {
+  border-collapse: collapse;
+}
+
+table.tradetable > tr > th, table.tradetable > tr > td, table.tradetable > * > tr > th, table.tradetable > * > tr > td {
+  border: none;
+  padding: 0 0.4em;
+}
+
+table.alternate tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+table.mw-collapsed > caption {
+  white-space: nowrap;
+}
+
+
+/* ========================================================================= */
+/*                                                                           */
+/*           Classes corresponding to GM4-specific Table Styling             */
+/*                                                                           */
+/* ========================================================================= */
+
+table.wikitable>*>tr>.halloween-th {
+  background-color: #4A406C;
+  color: white;
+}
+
+table.wikitable>*>tr>.halloween-th a {
+  color: #848484;
+}
+
+.halloween-tr {
+  background-color: #655784;
+  color: white;
+}
+
+.halloween-tr a {
+  color: #acacac;
+}
