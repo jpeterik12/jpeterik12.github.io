@@ -1,80 +1,9 @@
-.book {
-  background-image: url(https://wiki.gm4.co/images/e/e2/Book_page.png);
-  background-size: 292px 360px;
-  line-height: 18px;
-  position: relative;
-  font-family: minecraftia;
-  width: 292px;
-  height: 360px;
-  font-size: 16px;
-  padding-top: 27px;
-  padding-left: 32px;
-  padding-right: 34px;
-  padding-bottom: 2px;
-  box-sizing: border-box;
-  user-select: none;
-}
-
-.book_pagetext {
-  overflow-wrap: break-word;
-  white-space: break-spaces;
-  display: none;
-  width: 228px;
-  height: 252px;
-  word-spacing: -2.5px;
-}
-
-.book_pagetext.pageactive {
-  overflow: hidden;
-  display: block;
-  width: 228px;
-  height: 252px;
-}
-
-.book_pagenum {
-  text-align: right;
-  margin-bottom: 10px;
-  margin-right: 2px;
-  word-spacing: -2.5px;
-}
-
-.book_pagenum p {
-  text-align: left;
-  margin-bottom: 0px;
-}
-
-.book_leftarrow {
-  background-image: url(https://wiki.gm4.co/images/d/d1/Book_arrow_left.png);
-  display: inline-block;
-  position: absolute;
-  bottom: 24px;
-  left: 52px;
-  width: 36px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.book_leftarrow:hover {
-  background-image: url(https://wiki.gm4.co/images/6/64/Book_arrow_left_selected.png);
-}
-
-.book_rightarrow {
-  background-image: url(https://wiki.gm4.co/images/7/73/Book_arrow_right.png);
-  display: inline-block;
-  position: absolute;
-  bottom: 24px;
-  right: 58px;
-  width: 36px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.book_rightarrow:hover {
-  background-image: url(https://wiki.gm4.co/images/4/4e/Book_arrow_right_selected.png);
-}
-
 #code {
   white-space: break-spaces;
   width: 90vw;
   height: 30vh;
+}
+
+.book {
+  image-rendering: crisp-edges;
 }

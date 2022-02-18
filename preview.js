@@ -1,6 +1,7 @@
-/* exported addpage removepage copycode */
-
 $(() => {
+  $('#code').on('input', () => { loadfromnbt($('#code').val()); });
+  $('#multipage').on('change', () => { loadfromnbt($('#code').val()); });
+
   //Code For books
 
   $('.pageactive').each((_, page) => {
@@ -15,9 +16,6 @@ $(() => {
 });
 
 function setupPage (active) {
-  $('.book_pagetext').attr('contenteditable', 'true').on('input', () => {
-    generateCode();
-  });
   active.addClass('pageactive');
   const index = active.index();
   const length = active.siblings().length - 2;
@@ -29,22 +27,22 @@ function setupPage (active) {
   if (index == length) {
     active.siblings('.book_rightarrow').hide();
   }
-  generateCode();
 }
 
-function generateCode (visual) {
-  let code = '';
-  if (!visual) code += '{{Book|';
-  const start = Number($('#active').val());
-  $('.book_pagetext').each((index, page) => {
-    let text = $(page).html().replace(/=/gi, '&#61;').replace(/\|/gi, '&#124;');
-    if (text.slice(text.length - 4) == '<br>') text = text.slice(0, text.length - 4);
-    code += '{{BookPage|' + text;
-    if (index + 1 == start) code += '|active=true';
-    code += '}}';
-  });
-  if (!visual) code += '}}';
-  $('#code').text(code.replace(/<br>/g, '\n')).val(code.replace(/<br>/g, '\n'));
+function setPageCount (n) {
+  const current = $('.book_pagetext').length;
+  if (n > current) {
+    for (let i = current; i < n; i++) {
+      addpage();
+    }
+  } else if (n < current) {
+    for (let i = current; i > n; i--) {
+      removepage();
+      if (!$('.book_pagetext.pageactive')) {
+        $('.book_pagetext').last().addClass('pageactive');
+      }
+    }
+  }
 }
 
 function addpage () {
@@ -55,8 +53,7 @@ function addpage () {
 }
 
 function removepage () {
-  $('.book_pagetext.pageactive').remove();
-  $('.book_pagetext').first().addClass('pageactive');
+  $('.book_pagetext').last().remove();
   $('.pageactive').each((_, page) => {
     setupPage($(page));
   });
@@ -69,14 +66,21 @@ document.addEventListener('keydown', event => {
   }
 });
 
-function copycode (visual) {
-  generateCode(visual);
-  /* Get the text field */
-  const copyText = document.getElementById('code');
-
-  /* Select the text field */
-  copyText.select();
-
-  /* Copy the text inside the text field */
-  document.execCommand('copy');
+/* global readNBT */
+function loadfromnbt (nbt) {
+  try {
+    const multipage = $('#multipage').is(':checked');
+    const out = readNBT(nbt, multipage);
+    if (!multipage) {
+      setPageCount(1);
+      $('.pageactive').html(out);
+    } else {
+      setPageCount(out.length);
+      $('.book_pagetext').each((i, page) => {
+        $(page).html(out[i]);
+      });
+    }
+  } catch (err) {
+    // console.log(err);
+  }
 }

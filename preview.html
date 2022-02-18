@@ -12,17 +12,9 @@
 </head>
 
 <body>
-  <button onclick="addpage()">
-    add after current
-  </button>
-  <button onclick="removepage()">
-    remove current page
-  </button>
-  initial page
-  <input id="active" type="number" value="1" onchange="generateCode()" autocomplete="off">
-  <button onclick="loadfromnbt(prompt('NBT'))">
-    nbt input
-  </button>
+  <code>
+    <textarea id="code" autocomplete="off" spellcheck="false"></textarea>
+  </code>
   <input type="checkbox" id="multipage" autocomplete="off">
   multipage
   <div class="book">
@@ -34,23 +26,12 @@
     <div class="book_leftarrow book_arrow"></div>
     <div class="book_rightarrow book_arrow"></div>
   </div>
-  <button onclick="generateCode()">
+  <button onclick="loadfromnbt($('#code').val());">
     force update
   </button>
-  <button onclick="copycode()">
-    copy code
-  </button>
-  <button onclick="copycode(true)">
-    visual editor copy code
-  </button>
   <br>
-  <code>
-    <textarea id="code" autocomplete="off" spellcheck="false">
-    Code
-    </textarea>
-  </code>
   <script src="./nbt.js"></script>
-  <script src="./index.js"></script>
+  <script src="./preview.js"></script>
 </body>
 
 </html>
