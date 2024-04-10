@@ -6,6 +6,9 @@ dictKeyDelimiters = [':'];
 let i;
 
 function ParseObject(first, second) {
+  if (typeof first != "string") {
+    return first;
+  }
   if (second == undefined) {
     return ParseObjectString(first);
   }

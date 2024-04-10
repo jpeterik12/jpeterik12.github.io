@@ -4,8 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>replit</title>
+  <title>Stone Story Save Editor</title>
   <link href="./style.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/vanilla-jsoneditor/themes/jse-theme-dark.css" rel="stylesheet"
+    type="text/css" />
 </head>
 
 <body>
@@ -13,9 +15,13 @@
     <br>><a href="https://stonestoryrpg.com/faq.html#Technical%20Help" target="_blank">Where is primary_save.txt?</a>
   </p>
   <input type="file" id="file-input" />
+  <input id="clipboardLoad" placeholder="Paste Here to Load" />
   <br>
-  <div id="jsoneditor"></div>
+  <div id="jsoneditor" class="jse-theme-dark"></div>
+  <label><input type="checkbox" checked="true" id="do_encrypt" /> Encrypt Output Save</label>
+  <br>
   <button id="save">Save</button>
+  <button id="clipboardSave">Copy To Clipboard</button>
   <script src="./slimjson.js"></script>
   <script src="./Rijndael.js"></script>
   <script src="./script.js" type="module"></script>
