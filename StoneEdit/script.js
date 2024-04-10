@@ -1,12 +1,12 @@
 import { JSONEditor } from 'https://cdn.jsdelivr.net/npm/vanilla-jsoneditor/standalone.js'
 
-function parseSaveFile(data) {
+function parseSaveFile (data) {
 
   let savegame = ParseObject(data);
   return savegame;
 }
 
-async function parseProgressData(progress_data) {
+async function parseProgressData (progress_data) {
   return ParseObject(await decrypter(progress_data, "peekabeyoufoundme"));
 }
 
@@ -14,7 +14,7 @@ let decrypterthing;
 let salt;
 let iv;
 
-async function decrypter(cipherText, passPhrase) {
+async function decrypter (cipherText, passPhrase) {
   const array = new Uint8Array(atob(cipherText).split("").map(c => c.charCodeAt(0)));
   salt = array.slice(0, 32);
   iv = array.slice(32, 64);
@@ -75,11 +75,11 @@ const editor = new JSONEditor({
 })
 
 // Function to handle file loading
-function handleFileSelect(event) {
+function handleFileSelect (event) {
   const file = event.target.files[0];
   const reader = new FileReader();
 
-  reader.onload = async function(event) {
+  reader.onload = async function (event) {
     const data = event.target.result;
     const parsedData = parseSaveFile(data);
 
@@ -93,14 +93,14 @@ function handleFileSelect(event) {
   reader.readAsText(file);
 }
 
-function concatTypedArrays(a, b) { // a, b TypedArray of same type
+function concatTypedArrays (a, b) { // a, b TypedArray of same type
   var c = new (a.constructor)(a.length + b.length);
   c.set(a, 0);
   c.set(b, a.length);
   return c;
 }
 
-function Uint8ToString(u8a) {
+function Uint8ToString (u8a) {
   var CHUNK_SZ = 0x8000;
   var c = [];
   for (var i = 0; i < u8a.length; i += CHUNK_SZ) {
@@ -112,7 +112,7 @@ function Uint8ToString(u8a) {
 // Add event listener to file input element
 document.getElementById('file-input').addEventListener('change', handleFileSelect, false);
 
-function downloadObjectAsJson(exportObj, exportName) {
+function downloadObjectAsJson (exportObj, exportName) {
   var dataStr = "data:text;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj).replace(/"/g, "").replace(/,/g, ",\n"));
   var downloadAnchorNode = document.createElement('a');
   downloadAnchorNode.setAttribute("href", dataStr);
@@ -122,7 +122,7 @@ function downloadObjectAsJson(exportObj, exportName) {
   downloadAnchorNode.remove();
 }
 
-async function download_save() {
+async function download_save () {
   let slimjsontoencrypt = JSON.stringify(
     content.json.save_file_0.progress_data)
     .replace(/"([^,]+?)"/g, "$1")
@@ -144,7 +144,8 @@ async function download_save() {
   let encrypted = new Uint8Array(decrypterthing.encrypt(slimjsonencoded
     , 256, iv));
   encrypted = btoa(Uint8ToString(concatTypedArrays(concatTypedArrays(salt, iv), encrypted)));
-  const output = new Object(content.json);
+  const output = { ...content.json };
+  output.save_file_0 = { ...output.save_file_0 };
   output.save_file_0.progress_data = encrypted
   downloadObjectAsJson(output, "primary_save.txt")
 }
