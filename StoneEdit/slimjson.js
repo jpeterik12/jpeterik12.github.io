@@ -80,11 +80,11 @@ function ParseObject_String(sjson, delimiters) {
   let string = ""
   while (i < sjson.length) {
     c = sjson[i];
-    if (!flag && c == '\\') {
-      flag = true;
-      i++;
-      continue;
-    }
+    // if (!flag && c == '\\') {
+    //   flag = true;
+    //   i++;
+    //   continue;
+    // }
     if (!flag && ((delimiters != null && delimiters.includes(c)) || c == '\n')) {
       break;
     }
