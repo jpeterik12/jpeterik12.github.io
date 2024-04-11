@@ -16,7 +16,6 @@ let iv;
 
 async function decrypter(cipherText, passPhrase) {
   if (typeof cipherText != "string") {
-    console.log(cipherText);
     return cipherText;
   };
   const array = new Uint8Array(atob(cipherText).split("").map(c => c.charCodeAt(0)));
@@ -78,7 +77,7 @@ async function loadEntireSave(data) {
   try {
     const parsedData = parseSaveFile(data);
 
-    parsedData.save_file_0.progress_data = await parseProgressData(parsedData.save_file_0.progress_data)
+    if (parsedData.save_file_0) parsedData.save_file_0.progress_data = await parseProgressData(parsedData.save_file_0.progress_data)
     if (parsedData.save_file_1) parsedData.save_file_1.progress_data = await parseProgressData(parsedData.save_file_1.progress_data)
     if (parsedData.save_file_2) parsedData.save_file_2.progress_data = await parseProgressData(parsedData.save_file_2.progress_data)
 
@@ -86,6 +85,7 @@ async function loadEntireSave(data) {
     content.json = parsedData;
     editor.set(content)
   } catch (err) {
+    console.log(err)
     alert("Invalid Save\nIf you think this is an error, send your save to @jp12 on Discord");
   }
 }
@@ -165,9 +165,11 @@ async function encrypt_SaveData(progress_data) {
 async function download_save() {
   if (document.getElementById('do_encrypt').checked) {
     const output = { ...content.json };
-    output.save_file_0 = { ...output.save_file_0 };
-    output.save_file_0.progress_data = await encrypt_SaveData(output.save_file_0.progress_data)
-    output.save_file_0.encrypted = true;
+    if (output.save_file_0) {
+      output.save_file_0 = { ...output.save_file_0 };
+      output.save_file_0.progress_data = await encrypt_SaveData(output.save_file_0.progress_data)
+      output.save_file_0.encrypted = true;
+    }
 
     if (output.save_file_1) {
       output.save_file_1 = { ...output.save_file_1 };
@@ -201,9 +203,9 @@ async function clipboardLoad(evt) {
     evt.preventDefault();
     // const clipboardContents = await navigator.clipboard.read();
     let clipdata = evt.clipboardData || window.clipboardData;
-    // console.log(clipdata.getData('text/plain'))
     loadEntireSave(clipdata.getData('text/plain'));
   } catch (error) {
+    console.log(error);
     alert(`Clipboard read failed: ${error}`);
   }
 }
@@ -213,10 +215,12 @@ async function clipboardSave() {
     let output;
     if (document.getElementById('do_encrypt').checked) {
       output = { ...content.json };
+        if (output.save_file_0) {
       output.save_file_0 = { ...output.save_file_0 };
       output.save_file_0.progress_data = await encrypt_SaveData(output.save_file_0.progress_data)
       output.save_file_0.encrypted = true;
-
+        }
+          
       if (output.save_file_1) {
         output.save_file_1 = { ...output.save_file_1 };
         output.save_file_1.progress_data = await encrypt_SaveData(output.save_file_1.progress_data)
@@ -241,7 +245,7 @@ async function clipboardSave() {
       .replace(/true/gi, "True")
       .replace(/0\.00000([1-9])(\d+)/g, "$1.$2E-06").replace(/,/g, ",\n"));
   } catch (error) {
-    alert(`Clipboard read failed: ${error}`);
+    alert(`Clipboard write failed: ${error}`);
   }
 }
 
