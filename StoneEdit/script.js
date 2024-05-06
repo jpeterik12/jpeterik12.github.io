@@ -163,12 +163,12 @@ async function encrypt_SaveData(progress_data) {
 }
 
 async function download_save() {
+  let output;
+  if (content.json)
+    output = { ...content.json };
+  else
+    output = JSON.parse(content.text);
   if (document.getElementById('do_encrypt').checked) {
-    let output;
-    if (content.json)
-      output = { ...content.json };
-    else
-      output = JSON.parse(content.text);
     if (output.save_file_0) {
       output.save_file_0 = { ...output.save_file_0 };
       output.save_file_0.progress_data = await encrypt_SaveData(output.save_file_0.progress_data)
@@ -191,12 +191,12 @@ async function download_save() {
     return;
   }
 
+  
+  if (output.save_file_0) output.save_file_0.encrypted = false;
+  if (output.save_file_1) output.save_file_1.encrypted = false;
+  if (output.save_file_2) output.save_file_2.encrypted = false;
 
-  if (content.json.save_file_0) content.json.save_file_0.encrypted = false;
-  if (content.json.save_file_1) content.json.save_file_1.encrypted = false;
-  if (content.json.save_file_2) content.json.save_file_2.encrypted = false;
-
-  downloadObjectAsJson(content.json, "primary_save.txt")
+  downloadObjectAsJson(output, "primary_save.txt")
 }
 
 document.getElementById('save').addEventListener('click',
@@ -217,11 +217,11 @@ async function clipboardLoad(evt) {
 async function clipboardSave() {
   try {
     let output;
+    if (content.json)
+      output = { ...content.json };
+    else
+      output = JSON.parse(content.text);
     if (document.getElementById('do_encrypt').checked) {
-      if (content.json)
-        output = { ...content.json };
-      else
-        output = JSON.parse(content.text);
         if (output.save_file_0) {
       output.save_file_0 = { ...output.save_file_0 };
       output.save_file_0.progress_data = await encrypt_SaveData(output.save_file_0.progress_data)
@@ -240,10 +240,10 @@ async function clipboardSave() {
         output.save_file_2.encrypted = true;
       }
     } else {
-      if (content.json.save_file_0) content.json.save_file_0.encrypted = false;
-      if (content.json.save_file_1) content.json.save_file_1.encrypted = false;
-      if (content.json.save_file_2) content.json.save_file_2.encrypted = false;
-      output = content.json
+        output = JSON.parse(content.text);
+      if (output.save_file_0) output.save_file_0.encrypted = false;
+      if (output.save_file_1) output.save_file_1.encrypted = false;
+      if (output.save_file_2) output.save_file_2.encrypted = false;
 
     }
     await navigator.clipboard.writeText(JSON.stringify(output)
