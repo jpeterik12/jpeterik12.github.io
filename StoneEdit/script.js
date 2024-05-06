@@ -164,7 +164,11 @@ async function encrypt_SaveData(progress_data) {
 
 async function download_save() {
   if (document.getElementById('do_encrypt').checked) {
-    const output = { ...content.json };
+    let output;
+    if (content.json)
+      output = { ...content.json };
+    else
+      output = JSON.parse(content.text);
     if (output.save_file_0) {
       output.save_file_0 = { ...output.save_file_0 };
       output.save_file_0.progress_data = await encrypt_SaveData(output.save_file_0.progress_data)
@@ -214,7 +218,10 @@ async function clipboardSave() {
   try {
     let output;
     if (document.getElementById('do_encrypt').checked) {
-      output = { ...content.json };
+      if (content.json)
+        output = { ...content.json };
+      else
+        output = JSON.parse(content.text);
         if (output.save_file_0) {
       output.save_file_0 = { ...output.save_file_0 };
       output.save_file_0.progress_data = await encrypt_SaveData(output.save_file_0.progress_data)
