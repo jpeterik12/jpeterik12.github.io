@@ -240,7 +240,6 @@ async function clipboardSave() {
         output.save_file_2.encrypted = true;
       }
     } else {
-        output = JSON.parse(content.text);
       if (output.save_file_0) output.save_file_0.encrypted = false;
       if (output.save_file_1) output.save_file_1.encrypted = false;
       if (output.save_file_2) output.save_file_2.encrypted = false;
